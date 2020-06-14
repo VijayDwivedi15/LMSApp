@@ -1,0 +1,571 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="LMSDB2008Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Address" Type="nvarchar(max)" />
+          <Property Name="MobileNo" Type="bigint" />
+          <Property Name="Photo" Type="varbinary(max)" />
+          <Property Name="IdCard" Type="varbinary(max)" />
+          <Property Name="IdCardNo" Type="nvarchar" MaxLength="128" />
+          <Property Name="CustomerName" Type="nvarchar" MaxLength="128" />
+          <Property Name="PartyGST" Type="nvarchar" MaxLength="128" />
+          <Property Name="State" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="Room">
+          <Key>
+            <PropertyRef Name="RoomNo" />
+          </Key>
+          <Property Name="RoomNo" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoomType" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Rate" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TimeTable">
+          <Key>
+            <PropertyRef Name="TimeTableID" />
+          </Key>
+          <Property Name="TimeTableID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CheckInTime" Type="datetime" />
+          <Property Name="CheckOutTime" Type="datetime" />
+          <Property Name="CustomerID" Type="bigint" Nullable="false" />
+          <Property Name="RoomNo" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Rate" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Advance" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Remark" Type="nvarchar(max)" />
+          <Property Name="PickUpandDrop" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Laundry" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Bevrages" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Extra" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="GST" Type="bit" />
+          <Property Name="Food" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="MiniBite" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="InvoiceNo" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="Role" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'LMSDB.dbo.View_GetBill' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="View_GetBill">
+          <Key>
+            <PropertyRef Name="RoomNo" />
+            <PropertyRef Name="RoomType" />
+            <PropertyRef Name="Rate" />
+            <PropertyRef Name="CustomerID" />
+            <PropertyRef Name="PartyGST" />
+            <PropertyRef Name="State" />
+            <PropertyRef Name="TimeTableID" />
+            <PropertyRef Name="Advance" />
+            <PropertyRef Name="Bevrages" />
+            <PropertyRef Name="Laundry" />
+            <PropertyRef Name="PickUpandDrop" />
+            <PropertyRef Name="Extra" />
+            <PropertyRef Name="Food" />
+            <PropertyRef Name="MiniBite" />
+            <PropertyRef Name="InvoiceNo" />
+          </Key>
+          <Property Name="CustomerName" Type="nvarchar" MaxLength="128" />
+          <Property Name="RoomNo" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoomType" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Rate" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="CheckInTime" Type="datetime" />
+          <Property Name="CheckOutTime" Type="datetime" />
+          <Property Name="TT" Type="int" />
+          <Property Name="CGST" Type="int" />
+          <Property Name="SGST" Type="int" />
+          <Property Name="TA" Type="decimal" Precision="21" Scale="2" />
+          <Property Name="CGSTA" Type="decimal" Precision="36" Scale="6" />
+          <Property Name="SGSTA" Type="decimal" Precision="36" Scale="6" />
+          <Property Name="BA" Type="decimal" Precision="38" Scale="6" />
+          <Property Name="CustomerID" Type="bigint" Nullable="false" />
+          <Property Name="Address" Type="nvarchar(max)" />
+          <Property Name="MobileNo" Type="bigint" />
+          <Property Name="Photo" Type="varbinary(max)" />
+          <Property Name="IdCard" Type="varbinary(max)" />
+          <Property Name="IdCardNo" Type="nvarchar" MaxLength="128" />
+          <Property Name="PartyGST" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="State" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="TimeTableID" Type="bigint" Nullable="false" />
+          <Property Name="Remark" Type="nvarchar(max)" />
+          <Property Name="Advance" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Bevrages" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Laundry" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="PickUpandDrop" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Extra" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Food" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="MiniBite" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="InvoiceNo" Type="bigint" Nullable="false" />
+          <Property Name="Net_Amount" Type="decimal" Precision="38" Scale="6" />
+        </EntityType>
+        <Association Name="FK_TimeTable_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="TimeTable" Type="Self.TimeTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="TimeTable">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TimeTable_Room">
+          <End Role="Room" Type="Self.Room" Multiplicity="1" />
+          <End Role="TimeTable" Type="Self.TimeTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Room">
+              <PropertyRef Name="RoomNo" />
+            </Principal>
+            <Dependent Role="TimeTable">
+              <PropertyRef Name="RoomNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="AddCustomer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CustomerID" Type="bigint" Mode="In" />
+          <Parameter Name="Address" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="MobileNo" Type="bigint" Mode="In" />
+          <Parameter Name="Photo" Type="varbinary(max)" Mode="In" />
+          <Parameter Name="IdCard" Type="varbinary(max)" Mode="In" />
+          <Parameter Name="IdCardNo" Type="nvarchar" Mode="In" />
+          <Parameter Name="CustomerName" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="AddRoom" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="RoomNo" Type="nvarchar" Mode="In" />
+          <Parameter Name="RoomType" Type="nvarchar" Mode="In" />
+          <Parameter Name="Rate" Type="decimal" Mode="In" />
+        </Function>
+        <Function Name="GetBill" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="LMSDB2008ModelStoreContainer">
+          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Room" EntityType="Self.Room" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TimeTable" EntityType="Self.TimeTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="View_GetBill" EntityType="Self.View_GetBill" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [View_GetBill].[CustomerName] AS [CustomerName], 
+    [View_GetBill].[RoomNo] AS [RoomNo], 
+    [View_GetBill].[RoomType] AS [RoomType], 
+    [View_GetBill].[Rate] AS [Rate], 
+    [View_GetBill].[CheckInTime] AS [CheckInTime], 
+    [View_GetBill].[CheckOutTime] AS [CheckOutTime], 
+    [View_GetBill].[TT] AS [TT], 
+    [View_GetBill].[CGST] AS [CGST], 
+    [View_GetBill].[SGST] AS [SGST], 
+    [View_GetBill].[TA] AS [TA], 
+    [View_GetBill].[CGSTA] AS [CGSTA], 
+    [View_GetBill].[SGSTA] AS [SGSTA], 
+    [View_GetBill].[BA] AS [BA], 
+    [View_GetBill].[CustomerID] AS [CustomerID], 
+    [View_GetBill].[Address] AS [Address], 
+    [View_GetBill].[MobileNo] AS [MobileNo], 
+    [View_GetBill].[Photo] AS [Photo], 
+    [View_GetBill].[IdCard] AS [IdCard], 
+    [View_GetBill].[IdCardNo] AS [IdCardNo], 
+    [View_GetBill].[PartyGST] AS [PartyGST], 
+    [View_GetBill].[State] AS [State], 
+    [View_GetBill].[TimeTableID] AS [TimeTableID], 
+    [View_GetBill].[Remark] AS [Remark], 
+    [View_GetBill].[Advance] AS [Advance], 
+    [View_GetBill].[Bevrages] AS [Bevrages], 
+    [View_GetBill].[Laundry] AS [Laundry], 
+    [View_GetBill].[PickUpandDrop] AS [PickUpandDrop], 
+    [View_GetBill].[Extra] AS [Extra], 
+    [View_GetBill].[Food] AS [Food], 
+    [View_GetBill].[MiniBite] AS [MiniBite], 
+    [View_GetBill].[InvoiceNo] AS [InvoiceNo], 
+    [View_GetBill].[Net_Amount] AS [Net_Amount]
+    FROM [dbo].[View_GetBill] AS [View_GetBill]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_TimeTable_Customer" Association="Self.FK_TimeTable_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="TimeTable" EntitySet="TimeTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TimeTable_Room" Association="Self.FK_TimeTable_Room">
+            <End Role="Room" EntitySet="Room" />
+            <End Role="TimeTable" EntitySet="TimeTable" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LMSDB2008Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="LMSDB2018Entities" annotation:LazyLoadingEnabled="true">
+          <FunctionImport Name="AddCustomer">
+            <Parameter Name="CustomerID" Mode="In" Type="Int64" />
+            <Parameter Name="Address" Mode="In" Type="String" />
+            <Parameter Name="MobileNo" Mode="In" Type="Int64" />
+            <Parameter Name="Photo" Mode="In" Type="Binary" />
+            <Parameter Name="IdCard" Mode="In" Type="Binary" />
+            <Parameter Name="IdCardNo" Mode="In" Type="String" />
+            <Parameter Name="CustomerName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="AddRoom">
+            <Parameter Name="RoomNo" Mode="In" Type="String" />
+            <Parameter Name="RoomType" Mode="In" Type="String" />
+            <Parameter Name="Rate" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="GetBill" ReturnType="Collection(LMSDB2008Model.GetBill_Result)" />
+          <EntitySet Name="Customers" EntityType="LMSDB2008Model.Customer" />
+          <EntitySet Name="Rooms" EntityType="LMSDB2008Model.Room" />
+          <EntitySet Name="sysdiagrams" EntityType="LMSDB2008Model.sysdiagram" />
+          <EntitySet Name="TimeTables" EntityType="LMSDB2008Model.TimeTable" />
+          <EntitySet Name="Users" EntityType="LMSDB2008Model.User" />
+          <EntitySet Name="View_GetBill" EntityType="LMSDB2008Model.View_GetBill" />
+          <AssociationSet Name="FK_TimeTable_Customer" Association="LMSDB2008Model.FK_TimeTable_Customer">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="TimeTable" EntitySet="TimeTables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TimeTable_Room" Association="LMSDB2008Model.FK_TimeTable_Room">
+            <End Role="Room" EntitySet="Rooms" />
+            <End Role="TimeTable" EntitySet="TimeTables" />
+          </AssociationSet>
+        </EntityContainer>
+        <ComplexType Name="GetBill_Result">
+          <Property Type="String" Name="CustomerName" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="RoomNo" Nullable="false" MaxLength="128" />
+          <Property Type="String" Name="RoomType" Nullable="false" MaxLength="128" />
+          <Property Type="Decimal" Name="Rate" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="DateTime" Name="CheckInTime" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="CheckOutTime" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="TT" Nullable="true" />
+          <Property Type="String" Name="CGST" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="SGST" Nullable="true" MaxLength="128" />
+          <Property Type="Decimal" Name="TA" Nullable="true" Precision="21" Scale="2" />
+          <Property Type="Decimal" Name="CGSTA" Nullable="true" Precision="38" Scale="6" />
+          <Property Type="Decimal" Name="SGSTA" Nullable="true" Precision="38" Scale="6" />
+          <Property Type="Decimal" Name="BA" Nullable="true" Precision="38" Scale="6" />
+          <Property Type="Int64" Name="CustomerID" Nullable="false" />
+          <Property Type="String" Name="Address" Nullable="true" />
+          <Property Type="Int64" Name="MobileNo" Nullable="true" />
+          <Property Type="Binary" Name="Photo" Nullable="true" />
+          <Property Type="Binary" Name="IdCard" Nullable="true" />
+          <Property Type="String" Name="IdCardNo" Nullable="true" MaxLength="128" />
+        </ComplexType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MobileNo" Type="Int64" />
+          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="IdCard" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="IdCardNo" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TimeTables" Relationship="LMSDB2008Model.FK_TimeTable_Customer" FromRole="Customer" ToRole="TimeTable" />
+          <Property Name="PartyGST" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Room">
+          <Key>
+            <PropertyRef Name="RoomNo" />
+          </Key>
+          <Property Name="RoomNo" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="RoomType" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Rate" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <NavigationProperty Name="TimeTables" Relationship="LMSDB2008Model.FK_TimeTable_Room" FromRole="Room" ToRole="TimeTable" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TimeTable">
+          <Key>
+            <PropertyRef Name="TimeTableID" />
+          </Key>
+          <Property Name="TimeTableID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CheckInTime" Type="DateTime" Precision="3" />
+          <Property Name="CheckOutTime" Type="DateTime" Precision="3" />
+          <Property Name="CustomerID" Type="Int64" Nullable="false" />
+          <Property Name="RoomNo" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Rate" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Advance" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PickUpandDrop" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Laundry" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Bevrages" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Extra" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="GST" Type="Boolean" />
+          <NavigationProperty Name="Customer" Relationship="LMSDB2008Model.FK_TimeTable_Customer" FromRole="TimeTable" ToRole="Customer" />
+          <NavigationProperty Name="Room" Relationship="LMSDB2008Model.FK_TimeTable_Room" FromRole="TimeTable" ToRole="Room" />
+          <Property Name="Food" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="MiniBite" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="InvoiceNo" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="Role" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UserID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="View_GetBill">
+          <Key>
+            <PropertyRef Name="RoomNo" />
+            <PropertyRef Name="RoomType" />
+            <PropertyRef Name="Rate" />
+            <PropertyRef Name="CustomerID" />
+            <PropertyRef Name="TimeTableID" />
+            <PropertyRef Name="Advance" />
+            <PropertyRef Name="Bevrages" />
+            <PropertyRef Name="Laundry" />
+            <PropertyRef Name="PickUpandDrop" />
+            <PropertyRef Name="Extra" />
+            <PropertyRef Name="PartyGST" />
+            <PropertyRef Name="State" />
+            <PropertyRef Name="Food" />
+            <PropertyRef Name="MiniBite" />
+            <PropertyRef Name="InvoiceNo" />
+          </Key>
+          <Property Name="CustomerName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="RoomNo" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="RoomType" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Rate" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="CheckInTime" Type="DateTime" Precision="3" />
+          <Property Name="CheckOutTime" Type="DateTime" Precision="3" />
+          <Property Name="TT" Type="Int32" />
+          <Property Name="CGST" Type="Int32" />
+          <Property Name="SGST" Type="Int32" />
+          <Property Name="TA" Type="Decimal" Precision="21" Scale="2" />
+          <Property Name="CGSTA" Type="Decimal" Precision="36" Scale="6" />
+          <Property Name="SGSTA" Type="Decimal" Precision="36" Scale="6" />
+          <Property Name="BA" Type="Decimal" Precision="38" Scale="6" />
+          <Property Name="CustomerID" Type="Int64" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MobileNo" Type="Int64" />
+          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="IdCard" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="IdCardNo" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="TimeTableID" Type="Int64" Nullable="false" />
+          <Property Name="Remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Advance" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="Bevrages" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="Laundry" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="PickUpandDrop" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="Extra" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="Net_Amount" Type="Decimal" Precision="38" Scale="6" />
+          <Property Name="PartyGST" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Food" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="MiniBite" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="InvoiceNo" Type="Int64" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_TimeTable_Customer">
+          <End Type="LMSDB2008Model.Customer" Role="Customer" Multiplicity="1" />
+          <End Type="LMSDB2008Model.TimeTable" Role="TimeTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="TimeTable">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TimeTable_Room">
+          <End Type="LMSDB2008Model.Room" Role="Room" Multiplicity="1" />
+          <End Type="LMSDB2008Model.TimeTable" Role="TimeTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Room">
+              <PropertyRef Name="RoomNo" />
+            </Principal>
+            <Dependent Role="TimeTable">
+              <PropertyRef Name="RoomNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LMSDB2008ModelStoreContainer" CdmEntityContainer="LMSDB2018Entities">
+          <FunctionImportMapping FunctionImportName="AddCustomer" FunctionName="LMSDB2008Model.Store.AddCustomer" />
+          <FunctionImportMapping FunctionImportName="AddRoom" FunctionName="LMSDB2008Model.Store.AddRoom" />
+          <FunctionImportMapping FunctionImportName="GetBill" FunctionName="LMSDB2008Model.Store.GetBill">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LMSDB2008Model.GetBill_Result">
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="RoomNo" ColumnName="RoomNo" />
+                <ScalarProperty Name="RoomType" ColumnName="RoomType" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="CheckInTime" ColumnName="CheckInTime" />
+                <ScalarProperty Name="CheckOutTime" ColumnName="CheckOutTime" />
+                <ScalarProperty Name="TT" ColumnName="TT" />
+                <ScalarProperty Name="CGST" ColumnName="CGST" />
+                <ScalarProperty Name="SGST" ColumnName="SGST" />
+                <ScalarProperty Name="TA" ColumnName="TA" />
+                <ScalarProperty Name="CGSTA" ColumnName="CGSTA" />
+                <ScalarProperty Name="SGSTA" ColumnName="SGSTA" />
+                <ScalarProperty Name="BA" ColumnName="BA" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="IdCard" ColumnName="IdCard" />
+                <ScalarProperty Name="IdCardNo" ColumnName="IdCardNo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="LMSDB2008Model.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="PartyGST" ColumnName="PartyGST" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="IdCardNo" ColumnName="IdCardNo" />
+                <ScalarProperty Name="IdCard" ColumnName="IdCard" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rooms">
+            <EntityTypeMapping TypeName="LMSDB2008Model.Room">
+              <MappingFragment StoreEntitySet="Room">
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="RoomType" ColumnName="RoomType" />
+                <ScalarProperty Name="RoomNo" ColumnName="RoomNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="LMSDB2008Model.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TimeTables">
+            <EntityTypeMapping TypeName="LMSDB2008Model.TimeTable">
+              <MappingFragment StoreEntitySet="TimeTable">
+                <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+                <ScalarProperty Name="MiniBite" ColumnName="MiniBite" />
+                <ScalarProperty Name="Food" ColumnName="Food" />
+                <ScalarProperty Name="GST" ColumnName="GST" />
+                <ScalarProperty Name="Extra" ColumnName="Extra" />
+                <ScalarProperty Name="Bevrages" ColumnName="Bevrages" />
+                <ScalarProperty Name="Laundry" ColumnName="Laundry" />
+                <ScalarProperty Name="PickUpandDrop" ColumnName="PickUpandDrop" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="Advance" ColumnName="Advance" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="RoomNo" ColumnName="RoomNo" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="CheckOutTime" ColumnName="CheckOutTime" />
+                <ScalarProperty Name="CheckInTime" ColumnName="CheckInTime" />
+                <ScalarProperty Name="TimeTableID" ColumnName="TimeTableID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="LMSDB2008Model.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_GetBill">
+            <EntityTypeMapping TypeName="LMSDB2008Model.View_GetBill">
+              <MappingFragment StoreEntitySet="View_GetBill">
+                <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+                <ScalarProperty Name="MiniBite" ColumnName="MiniBite" />
+                <ScalarProperty Name="Food" ColumnName="Food" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="PartyGST" ColumnName="PartyGST" />
+                <ScalarProperty Name="Net_Amount" ColumnName="Net_Amount" />
+                <ScalarProperty Name="Extra" ColumnName="Extra" />
+                <ScalarProperty Name="PickUpandDrop" ColumnName="PickUpandDrop" />
+                <ScalarProperty Name="Laundry" ColumnName="Laundry" />
+                <ScalarProperty Name="Bevrages" ColumnName="Bevrages" />
+                <ScalarProperty Name="Advance" ColumnName="Advance" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="TimeTableID" ColumnName="TimeTableID" />
+                <ScalarProperty Name="IdCardNo" ColumnName="IdCardNo" />
+                <ScalarProperty Name="IdCard" ColumnName="IdCard" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="BA" ColumnName="BA" />
+                <ScalarProperty Name="SGSTA" ColumnName="SGSTA" />
+                <ScalarProperty Name="CGSTA" ColumnName="CGSTA" />
+                <ScalarProperty Name="TA" ColumnName="TA" />
+                <ScalarProperty Name="SGST" ColumnName="SGST" />
+                <ScalarProperty Name="CGST" ColumnName="CGST" />
+                <ScalarProperty Name="TT" ColumnName="TT" />
+                <ScalarProperty Name="CheckOutTime" ColumnName="CheckOutTime" />
+                <ScalarProperty Name="CheckInTime" ColumnName="CheckInTime" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="RoomType" ColumnName="RoomType" />
+                <ScalarProperty Name="RoomNo" ColumnName="RoomNo" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
